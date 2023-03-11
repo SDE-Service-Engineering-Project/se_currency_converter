@@ -2,10 +2,10 @@ from spyne import Application
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
 
-from controller.conversion import EchoService, CurrencyConversionService
-from services.conversion import convert_currency
+from controller.conversion import CurrencyConversionService
 
-app = Application([CurrencyConversionService, EchoService], 'http://localhost:8000/',
+app = Application([CurrencyConversionService], tns="ccs",
+                  name="CurrencyConversionService",
                   in_protocol=Soap11(validator='lxml'),
                   out_protocol=Soap11())
 
