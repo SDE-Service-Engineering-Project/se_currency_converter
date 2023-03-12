@@ -14,6 +14,8 @@ def load_currencies(input_date: date) -> dict:
         response = requests.get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
     except Exception as e:
         raise ExternalServerException(f"The external server hosting the currencies could not be reached: {e}")
+    if response.status_code != 200:
+        raise ExternalServerException(f"The external server hosting the currencies could not be reached.")
 
     try:
         data = xmltodict.parse(response.text)
