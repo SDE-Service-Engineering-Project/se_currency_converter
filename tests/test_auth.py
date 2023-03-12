@@ -30,3 +30,12 @@ def test_authenticate_invalid_signature():
     # Act & Assert
     with pytest.raises(AuthenticationException):
         authenticate(ctx)
+
+
+def test_authenticate_invalid_token():
+    # Arrange
+    token = "asdf"
+    ctx = MockContext(in_header=MockInHeader(token))
+    # Act & Assert
+    with pytest.raises(AuthenticationException):
+        authenticate(ctx)
