@@ -1,6 +1,6 @@
 from spyne import rpc, ServiceBase, Unicode, Float
 
-from models.auth import _authenticate, AuthenticationHeader
+from services.auth import authenticate, AuthenticationHeader
 from services.conversion import convert_currency
 
 
@@ -14,4 +14,4 @@ class CurrencyConversionService(ServiceBase):
         return convert_currency(amount, from_currency, to_currency)
 
 
-CurrencyConversionService.event_manager.add_listener('method_call', _authenticate)
+CurrencyConversionService.event_manager.add_listener('method_call', authenticate)
