@@ -1,7 +1,7 @@
 from functools import lru_cache
 
 import jwt
-from jwt import InvalidSignatureError, ExpiredSignatureError
+from jwt import InvalidSignatureError, ExpiredSignatureError, DecodeError
 from spyne import ComplexModel, Unicode
 
 from exceptions.exceptions import AuthenticationException
@@ -23,9 +23,11 @@ def authenticate(ctx):
         pub_key = load_pub_key()
         jwt.decode(token, pub_key, algorithms=["RS256"])
     except InvalidSignatureError:
-        raise AuthenticationException("Authentication failed")
+        raise AuthenticationException("The token signature is invalid")
     except ExpiredSignatureError:
-        raise AuthenticationException("Token expired")
+        raise AuthenticationException("The token has expired")
+    except DecodeError:
+        raise AuthenticationException("The token is not valid")
 
 
 @lru_cache(maxsize=1)
