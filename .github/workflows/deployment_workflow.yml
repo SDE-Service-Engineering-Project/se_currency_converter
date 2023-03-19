@@ -3,7 +3,7 @@
 name: Build and deploy to IBM Kubernetes
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
