@@ -25,4 +25,4 @@ def load_currencies(input_date: date) -> dict:
     currency_dict = dict([(item['@currency'], float(item['@rate'])) for item in currency_entries])
     currency_dict['EUR'] = 1.0
 
-    return currency_dict
+    return dict(sorted(currency_dict.items()))
