@@ -10,6 +10,11 @@ def convert_currency(amount: float, from_currency: str, to_currency: str) -> flo
     return amount * (exchange_rates[to_currency] / exchange_rates[from_currency])
 
 
+def list_all_currencies() -> list:
+    exchange_rates = load_currencies(date.today())
+    return list(exchange_rates.keys())
+
+
 def ensure_currencies_are_supported(exchange_rates: dict, currencies: tuple):
     for currency in currencies:
         if currency not in exchange_rates:

@@ -1,7 +1,7 @@
 import pytest
 
 from exceptions.exceptions import BadRequestException
-from services.conversion import convert_currency, ensure_currencies_are_supported
+from services.currency import convert_currency, ensure_currencies_are_supported
 
 mocked_currency_conversion_rates = {'EUR': 1.0, 'USD': 1.1}
 

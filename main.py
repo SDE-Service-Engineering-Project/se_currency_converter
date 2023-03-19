@@ -2,7 +2,7 @@ from spyne import Application
 from spyne.protocol.soap import Soap11
 from spyne.server.wsgi import WsgiApplication
 
-from controller.conversion import CurrencyConversionService
+from controller.currency import CurrencyConversionService
 
 app = Application([CurrencyConversionService], tns="ccs",
                   name="CurrencyConversionService",
