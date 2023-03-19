@@ -8,7 +8,7 @@ mocked_currency_conversion_rates = {'EUR': 1.0, 'USD': 1.1}
 
 def test_convert_currency_single_convert_success(mocker):
     # Arrange
-    mocker.patch('services.conversion.load_currencies', return_value=mocked_currency_conversion_rates)
+    mocker.patch('services.currency.load_currencies', return_value=mocked_currency_conversion_rates)
     # Act & Assert
     assert convert_currency(2.0, 'EUR', 'USD') == 2.2
 
@@ -16,7 +16,7 @@ def test_convert_currency_single_convert_success(mocker):
 def test_convert_currency_multiple_convert_success(mocker):
     # Arrange
     original_input = 2.0
-    mocker.patch('services.conversion.load_currencies', return_value=mocked_currency_conversion_rates)
+    mocker.patch('services.currency.load_currencies', return_value=mocked_currency_conversion_rates)
     # Act
     first_call_result = convert_currency(original_input, 'EUR', 'USD')
     second_call_result = convert_currency(first_call_result, 'USD', 'EUR')
