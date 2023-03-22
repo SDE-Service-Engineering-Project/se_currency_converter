@@ -13,7 +13,7 @@ def test_load_currencies_server_unavailable():
         m.get("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml", status_code=404)
         # Act & Assert
         with pytest.raises(ExternalServerException):
-            load_currencies(date.today())
+            load_currencies()
 
 
 def test_load_currencies_malformed_content():
@@ -22,5 +22,5 @@ def test_load_currencies_malformed_content():
         m.get("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml", status_code=200, text="malformed content")
         # Act & Assert
         with pytest.raises(ExternalServerException):
-            load_currencies(date.today())
+            load_currencies()
 

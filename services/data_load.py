@@ -8,8 +8,7 @@ from exceptions.exceptions import ExternalServerException
 
 
 @lru_cache(maxsize=1)
-def load_currencies(input_date: date) -> dict:
-    """ The input parameter only functions as a cache key. The actual date is parsed from the response."""
+def load_currencies() -> dict:
     try:
         response = requests.get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
     except Exception as e:
