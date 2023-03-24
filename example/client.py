@@ -15,7 +15,6 @@
 
 from __future__ import print_function
 
-import logging
 import os
 
 import grpc
@@ -44,5 +43,4 @@ def run():
 
 
 if __name__ == '__main__':
-    logging.basicConfig()
     run()

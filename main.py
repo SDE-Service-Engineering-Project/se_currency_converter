@@ -27,5 +27,4 @@ def serve():
 
 if __name__ == '__main__':
     run_schedules_continuously(1)
-    logging.basicConfig()
     serve()
