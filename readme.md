@@ -7,4 +7,7 @@
     - To `import generated.currency_service_pb2 as currency__service__pb2`
 - Sadly, grpc/proto doesn't support relative paths, so this needs to be fixed after each re-generation of the code.
 
+# Test the client
 
+* To test the gRPC client, create a local .env file with the same content as the .env.example, then replace the token with an
+actual JWT token
