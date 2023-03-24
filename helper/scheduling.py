@@ -36,7 +36,7 @@ def run_schedules_continuously(interval=1):
 # According to the ecb website, the exchange rates are updated daily around 16:00 CET,
 # therefore the cache is cleared at 16:05 (because of the "around" formulation)
 # https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html
-@repeat(every(1).days.at("16:05"))
+@repeat(every(1).days.at("17:00"))
 # todo Remove the extra loads after this is confirmed working
 def invalidate_exchange_rate_cache():
     logging.info("Invalidating exchange rate cache.")
