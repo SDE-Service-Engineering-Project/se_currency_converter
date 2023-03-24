@@ -11,9 +11,7 @@ env:
   GITHUB_SHA: ${{ github.sha }}
   IBM_CLOUD_API_KEY: ${{ secrets.IBM_CLOUD_API_KEY }}
   IBM_CLOUD_REGION: eu-de
-  ICR_NAMESPACE: ${{ secrets.ICR_NAMESPACE }}
   K8S_NAMESPACE: part2
-  REGISTRY_HOSTNAME: de.icr.io
   IMAGE_NAME: se-currency-converter-part2 # ADAPT!
   IKS_CLUSTER: cgbisc9f0brfqd97s8d0 # name or id of cluster
   DEPLOYMENT_NAME: se-currency-converter-part2 # ADAPT!
