@@ -25,7 +25,7 @@ class JWTAuthInterceptor(ServerInterceptor):
                 raise Unauthenticated('Authentication header is not present', grpc.StatusCode.UNAUTHENTICATED)
             token = metadata['authorization']
             try:
-                decoded_token = jwt.decode(token, self.secret_key, algorithms=['RS256'])
+                jwt.decode(token, self.secret_key, algorithms=['RS256'])
             except InvalidSignatureError:
                 raise Unauthenticated('The token signature is invalid', grpc.StatusCode.UNAUTHENTICATED)
             except ExpiredSignatureError:
