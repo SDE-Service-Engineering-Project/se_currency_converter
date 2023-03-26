@@ -42,6 +42,11 @@ jobs:
           docker build -t "$DOCKER_USER"/"$IMAGE_NAME":"$GITHUB_SHA" \
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
             --build-arg GITHUB_REF="$GITHUB_REF" .
+      # Push the image to Dockerhub
+      - name: Push the image to Dockerhub
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker push $DOCKER_USER/$IMAGE_NAME:$GITHUB_SHA
       # Deploy the Docker image to the IKS cluster
       - name: Deploy to IKS
       # Change the service type to the actual service
