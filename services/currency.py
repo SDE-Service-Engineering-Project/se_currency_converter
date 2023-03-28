@@ -1,8 +1,6 @@
-from datetime import date
+from grpc_interceptor.exceptions import Internal
 
-from exceptions.exceptions import BadRequestException
 from services.data_load import load_currencies
-
 
 def convert_currency(amount: float, from_currency: str, to_currency: str) -> float:
     exchange_rates = load_currencies()
@@ -18,4 +16,4 @@ def list_all_currencies() -> list:
 def ensure_currencies_are_supported(exchange_rates: dict, currencies: tuple):
     for currency in currencies:
         if currency not in exchange_rates:
-            raise BadRequestException(f"Currency {currency} is not supported.")
+            raise Internal(f"Currency {currency} is not supported.")

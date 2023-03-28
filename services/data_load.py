@@ -4,7 +4,7 @@ from functools import lru_cache
 import requests
 import xmltodict
 
-from exceptions.exceptions import ExternalServerException
+from grpc_interceptor.exceptions import Unavailable
 
 
 @lru_cache(maxsize=1)
@@ -12,15 +12,15 @@ def load_currencies() -> dict:
     try:
         response = requests.get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
     except Exception as e:
-        raise ExternalServerException(f"The external server hosting the currencies could not be reached: {e}")
+        raise Unavailable(f"The external server hosting the currencies could not be reached: {e}")
     if response.status_code != 200:
-        raise ExternalServerException(f"The external server hosting the currencies could not be reached.")
+        raise Unavailable(f"The external server hosting the currencies could not be reached.")
 
     try:
         data = xmltodict.parse(response.text)
         currency_entries = data['gesmes:Envelope']['Cube']['Cube']['Cube']
     except Exception as e:
-        raise ExternalServerException(f"The response of the external service is malformed: {e}")
+        raise Unavailable(f"The response of the external service is malformed: {e}")
     currency_dict = dict([(item['@currency'], float(item['@rate'])) for item in currency_entries])
     currency_dict['EUR'] = 1.0
 

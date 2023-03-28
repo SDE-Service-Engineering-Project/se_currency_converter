@@ -1,6 +1,6 @@
 import pytest
+from grpc_interceptor.exceptions import Internal
 
-from exceptions.exceptions import BadRequestException
 from services.currency import convert_currency, ensure_currencies_are_supported
 
 mocked_currency_conversion_rates = {'EUR': 1.0, 'USD': 1.1}
@@ -30,7 +30,7 @@ def test_ensure_currencies_are_supported_success():
     # Act & Assert
     try:
         ensure_currencies_are_supported(conversion_rates, ('EUR', 'USD'))
-    except BadRequestException:
+    except Internal:
         # Assert
         assert False
 
@@ -39,5 +39,5 @@ def test_ensure_currencies_are_supported_fail():
     # Arrange
     conversion_rates = mocked_currency_conversion_rates
     # Act 6 Assert
-    with pytest.raises(BadRequestException):
+    with pytest.raises(Internal):
         ensure_currencies_are_supported(conversion_rates, ('SEK', 'USD'))
