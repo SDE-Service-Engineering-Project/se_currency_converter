@@ -15,8 +15,6 @@
 
 from __future__ import print_function
 
-import os
-
 import grpc
 from dotenv import load_dotenv
 
@@ -27,18 +25,15 @@ load_dotenv()
 
 
 def run():
-    token = os.getenv("JWT_TOKEN")
-    headers = [('authorization', token)]
-
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = CurrencyConversionStub(channel)
         response: ConversionResponse = stub.Convert(
-            ConversionRequest(from_currency="USD", to_currency="EUR", amount=100), metadata=headers)
+            ConversionRequest(from_currency="USD", to_currency="EUR", amount=100))
         print(f"Converted amount: {response.amount}")
 
     with grpc.insecure_channel('localhost:50051') as channel:
         stub = CurrencyConversionStub(channel)
-        response: CurrencyResponse = stub.GetCurrencies(CurrencyRequest(), metadata=headers)
+        response: CurrencyResponse = stub.GetCurrencies(CurrencyRequest())
         print(f"Currencies amount: {[currency.name for currency in response.currencies]}")
 
 
