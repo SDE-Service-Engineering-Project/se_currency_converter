@@ -2,6 +2,7 @@ from grpc_interceptor.exceptions import Internal
 
 from services.data_load import load_currencies
 
+
 def convert_currency(amount: float, from_currency: str, to_currency: str) -> float:
     exchange_rates = load_currencies()
     ensure_currencies_are_supported(exchange_rates, (to_currency, from_currency))

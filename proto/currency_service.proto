@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 service CurrencyConversion {
-  rpc Convert (ConversionRequest) returns (ConversionResponse) {}
-  rpc GetCurrencies (CurrencyRequest) returns (CurrencyResponse) {}
+  rpc convert (ConversionRequest) returns (ConversionResponse) {}
+  rpc getCurrencies (CurrencyRequest) returns (CurrencyResponse) {}
 }
 
 
