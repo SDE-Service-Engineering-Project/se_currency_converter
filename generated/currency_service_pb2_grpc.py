@@ -14,13 +14,13 @@ class CurrencyConversionStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.Convert = channel.unary_unary(
-                '/CurrencyConversion/Convert',
+        self.convert = channel.unary_unary(
+                '/CurrencyConversion/convert',
                 request_serializer=currency__service__pb2.ConversionRequest.SerializeToString,
                 response_deserializer=currency__service__pb2.ConversionResponse.FromString,
                 )
-        self.GetCurrencies = channel.unary_unary(
-                '/CurrencyConversion/GetCurrencies',
+        self.getCurrencies = channel.unary_unary(
+                '/CurrencyConversion/getCurrencies',
                 request_serializer=currency__service__pb2.CurrencyRequest.SerializeToString,
                 response_deserializer=currency__service__pb2.CurrencyResponse.FromString,
                 )
@@ -29,13 +29,13 @@ class CurrencyConversionStub(object):
 class CurrencyConversionServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def Convert(self, request, context):
+    def convert(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetCurrencies(self, request, context):
+    def getCurrencies(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -44,13 +44,13 @@ class CurrencyConversionServicer(object):
 
 def add_CurrencyConversionServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Convert': grpc.unary_unary_rpc_method_handler(
-                    servicer.Convert,
+            'convert': grpc.unary_unary_rpc_method_handler(
+                    servicer.convert,
                     request_deserializer=currency__service__pb2.ConversionRequest.FromString,
                     response_serializer=currency__service__pb2.ConversionResponse.SerializeToString,
             ),
-            'GetCurrencies': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetCurrencies,
+            'getCurrencies': grpc.unary_unary_rpc_method_handler(
+                    servicer.getCurrencies,
                     request_deserializer=currency__service__pb2.CurrencyRequest.FromString,
                     response_serializer=currency__service__pb2.CurrencyResponse.SerializeToString,
             ),
@@ -65,7 +65,7 @@ class CurrencyConversion(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def Convert(request,
+    def convert(request,
             target,
             options=(),
             channel_credentials=None,
@@ -75,14 +75,14 @@ class CurrencyConversion(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/CurrencyConversion/Convert',
+        return grpc.experimental.unary_unary(request, target, '/CurrencyConversion/convert',
             currency__service__pb2.ConversionRequest.SerializeToString,
             currency__service__pb2.ConversionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetCurrencies(request,
+    def getCurrencies(request,
             target,
             options=(),
             channel_credentials=None,
@@ -92,7 +92,7 @@ class CurrencyConversion(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/CurrencyConversion/GetCurrencies',
+        return grpc.experimental.unary_unary(request, target, '/CurrencyConversion/getCurrencies',
             currency__service__pb2.CurrencyRequest.SerializeToString,
             currency__service__pb2.CurrencyResponse.FromString,
             options, channel_credentials,

@@ -25,15 +25,15 @@ load_dotenv()
 
 
 def run():
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('169.51.206.49:32760') as channel:
         stub = CurrencyConversionStub(channel)
-        response: ConversionResponse = stub.Convert(
+        response: ConversionResponse = stub.convert(
             ConversionRequest(from_currency="USD", to_currency="EUR", amount=100))
         print(f"Converted amount: {response.amount}")
 
-    with grpc.insecure_channel('localhost:50051') as channel:
+    with grpc.insecure_channel('169.51.206.49:32760') as channel:
         stub = CurrencyConversionStub(channel)
-        response: CurrencyResponse = stub.GetCurrencies(CurrencyRequest())
+        response: CurrencyResponse = stub.getCurrencies(CurrencyRequest())
         print(f"Currencies amount: {[currency.name for currency in response.currencies]}")
 
 
