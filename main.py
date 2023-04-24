@@ -1,6 +1,5 @@
 import logging
 from concurrent import futures
-from logging import getLogger
 
 import grpc
 
@@ -8,9 +7,7 @@ from controller.currency import Converter
 from generated import currency_service_pb2_grpc
 from helper.scheduling import run_schedules_continuously
 
-# Set logging level
-logger = getLogger()
-logger.setLevel(logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 
 def serve():
